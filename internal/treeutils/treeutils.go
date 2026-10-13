@@ -41,27 +41,61 @@ func CreateTree(nums []int) *TreeNode {
 	return root
 }
 
-// PrintTree imprime un árbol de forma visual.
-func PrintTree(root *TreeNode, prefix string, isLeft bool) {
+// PrintTree imprime el árbol rotado 90° con la raíz a la izquierda.
+// El hijo derecho aparece arriba y el izquierdo abajo.
+// Los hijos únicos muestran un slot vacío (·) del lado que falta.
+func PrintTree(root *TreeNode) {
 	if root == nil {
+		fmt.Println("(árbol vacío)")
+		return
+	}
+	fmt.Println()
+	fmt.Println(root.Val)
+	printChildren(root, "")
+	fmt.Println()
+}
+
+// printChildren decide cómo dibujar los hijos de un nodo:
+//   - ambos: hijo derecho arriba (┌──), izquierdo abajo (└──)
+//   - solo derecho: hijo arriba, slot vacío abajo (└── ·)
+//   - solo izquierdo: slot vacío arriba (┌── ·), hijo abajo
+//   - ninguno: nada
+func printChildren(node *TreeNode, prefix string) {
+	hasLeft := node.Left != nil
+	hasRight := node.Right != nil
+
+	switch {
+	case hasLeft && hasRight:
+		printRotated(node.Right, prefix, false)
+		printRotated(node.Left, prefix, true)
+	case hasRight:
+		printRotated(node.Right, prefix, false)
+		fmt.Println(prefix + "└── ·")
+	case hasLeft:
+		fmt.Println(prefix + "┌── ·")
+		printRotated(node.Left, prefix, true)
+	}
+	// sin hijos: no imprimir nada
+}
+
+// printRotated imprime un nodo y delega sus hijos a printChildren.
+func printRotated(node *TreeNode, prefix string, isLeft bool) {
+	if node == nil {
 		return
 	}
 
-	fmt.Printf("%s", prefix)
+	connector := "┌── "
 	if isLeft {
-		fmt.Print("└── ")
-	} else {
-		fmt.Print("├── ")
+		connector = "└── "
 	}
-	fmt.Println(root.Val)
+	fmt.Println(prefix + connector + fmt.Sprint(node.Val))
 
 	newPrefix := prefix
 	if isLeft {
-		newPrefix += "│   "
-	} else {
 		newPrefix += "    "
+	} else {
+		newPrefix += "│   "
 	}
 
-	PrintTree(root.Left, newPrefix, true)
-	PrintTree(root.Right, newPrefix, false)
+	printChildren(node, newPrefix)
 }

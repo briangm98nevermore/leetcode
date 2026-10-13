@@ -53,9 +53,7 @@ func inorderTraversal(root *treeutils.TreeNode) []int {
 func main()  {
 
 	raiz := treeutils.CreateTree([]int{1,2,3,4,5,-1,8,-1,-1,6,7,9})
-	//printTree(raiz, "", false)
     result:=inorderTraversal(raiz)
     fmt.Println(result)
-
 
 }

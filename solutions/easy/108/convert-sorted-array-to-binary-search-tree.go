@@ -25,5 +25,5 @@ func build(nums []int, izquierda, derecha int) *treeutils.TreeNode {
 
 func main() {
 	root := sortedArrayToBST([]int{-10, -3, 0, 5, 9})
-	treeutils.PrintTree(root, "", true)
+	treeutils.PrintTree(root)
 }

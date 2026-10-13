@@ -61,5 +61,5 @@ func main()  {
 
 	fmt.Println(minDepth(root))
 
-	treeutils.PrintTree(root, "", false)
+	treeutils.PrintTree(root)
 }

@@ -77,5 +77,5 @@ func main()  {
 	
 	root := treeutils.CreateTree([]int{3,9,20,-1,-1,15,7})
 	fmt.Println(checkdepth(root))
-	treeutils.PrintTree(root, "", false)
+	treeutils.PrintTree(root)
 }

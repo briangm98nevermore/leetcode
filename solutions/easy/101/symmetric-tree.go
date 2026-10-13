@@ -49,7 +49,7 @@ func main() {
 
 	root := treeutils.CreateTree([]int{1, 2, 2, 3, -1, -1, 3})
 	//root := treeutils.CreateTree([]int{1,2,2,-1,3,-1,3})
-	treeutils.PrintTree(root, "", false)
+	treeutils.PrintTree(root)
 
 	fmt.Println(isSymmetric(root))
 

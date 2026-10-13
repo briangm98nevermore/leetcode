@@ -39,7 +39,7 @@ func maxDepth(root *treeutils.TreeNode) int {
 func main()  {
 
 	root := treeutils.CreateTree([]int{3,9,20,-1,-1,15,7})
-	treeutils.PrintTree(root, "", true)
+	treeutils.PrintTree(root)
 
 	fmt.Println(maxDepth(root))
 }

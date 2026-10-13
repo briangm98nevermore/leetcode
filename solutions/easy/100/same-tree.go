@@ -37,8 +37,8 @@ func main()  {
 	p := treeutils.CreateTree([]int{1,2,1})
 	q := treeutils.CreateTree([]int{1,1,2})
 
-	treeutils.PrintTree(p, "", false)
-	treeutils.PrintTree(q, "", false)
+	treeutils.PrintTree(p)
+	treeutils.PrintTree(q)
 
 	fmt.Println(isSameTree(p,q))
 
