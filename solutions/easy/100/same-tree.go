@@ -17,7 +17,7 @@ and the nodes have the same value.
 package main
 
 import "fmt"
-import "leetcode/treeutils"
+import "leetcode/internal/treeutils"
 
 func isSameTree(p *treeutils.TreeNode, q *treeutils.TreeNode) bool {
     if p == nil && q == nil {

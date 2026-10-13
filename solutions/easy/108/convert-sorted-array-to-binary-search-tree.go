@@ -1,6 +1,6 @@
 package main
 
-import "leetcode/treeutils"
+import "leetcode/internal/treeutils"
 
 
 func sortedArrayToBST(nums []int) *treeutils.TreeNode {

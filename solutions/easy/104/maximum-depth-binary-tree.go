@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"leetcode/treeutils"
+	"leetcode/internal/treeutils"
 )
 
 func maxDepth(root *treeutils.TreeNode) int {

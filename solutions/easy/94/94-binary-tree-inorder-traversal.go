@@ -21,7 +21,7 @@ package main
 
 import (
 	"fmt"
-    "leetcode/treeutils"
+    "leetcode/internal/treeutils"
 )
 
 func inorderTraversal(root *treeutils.TreeNode) []int {
