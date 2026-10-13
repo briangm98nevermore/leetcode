@@ -1,6 +1,9 @@
 package main
 
-import "leetcode/internal/treeutils"
+import (
+	"fmt"
+	"leetcode/internal/treeutils"
+)
 
 /**
  * Definition for a binary tree node.
@@ -11,10 +14,10 @@ import "leetcode/internal/treeutils"
  * }
 
  	Given the root of a binary tree and an integer targetSum,
-	return true if the tree has a root-to-leaf path such that adding up 
+	return true if the tree has a root-to-leaf path such that adding up
 	all the values along the path equals targetSum.
 
-	A leaf is a node with no children.	
+	A leaf is a node with no children.
 
 	Example 1:
 	Input: root = [5,4,8,11,null,13,4,7,2,null,null,null,1], targetSum = 22
@@ -32,7 +35,7 @@ import "leetcode/internal/treeutils"
 	Example 3:
 	Input: root = [], targetSum = 0
 	Output: false
-	Explanation: Since the tree is empty, there are no root-to-leaf paths.	
+	Explanation: Since the tree is empty, there are no root-to-leaf paths.
 
 	Constraints:
 
@@ -40,14 +43,34 @@ import "leetcode/internal/treeutils"
 		-1000 <= Node.val <= 1000
 		-1000 <= targetSum <= 1000
 
- */
+*/
 func hasPathSum(root *treeutils.TreeNode, targetSum int) bool {
-    return true
+    
+	if root == nil {
+		return false
+	}
+
+	if root.Left == nil && root.Right == nil{
+		if root.Val - targetSum == 0 {
+			return true
+		}else{ return false }
+	}
+
+	if root.Left != nil && root.Right == nil {
+		return hasPathSum(root.Left,targetSum - root.Val)
+	}
+
+	if root.Right != nil && root.Left == nil {
+		return hasPathSum(root.Right,targetSum - root.Val)
+	}
+
+	return hasPathSum(root.Left,targetSum-root.Val) || hasPathSum(root.Right,targetSum-root.Val)
 }
 
-
 func main()  {
-	tree := treeutils.CreateTree([]int{5,4,8,11,-1,13,4,7,2,-1,-1,-1,1})
 
+	tree := treeutils.CreateTree([]int{10,2,11,0})
 	treeutils.PrintTree(tree)
+
+	fmt.Println(hasPathSum(tree,12))
 }
