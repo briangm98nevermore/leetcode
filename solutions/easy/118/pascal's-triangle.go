@@ -61,6 +61,6 @@ func main()  {
 	fmt.Println("expected :")
 	fmt.Println(matris)
 	fmt.Println("result :")
-	fmt.Println(generate(1))
+	fmt.Println(generate(3))
 
 }
