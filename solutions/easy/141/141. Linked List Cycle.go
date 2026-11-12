@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"leetcode/internal/listutils"
 )
 
@@ -35,7 +36,6 @@ Constraints:
     pos is -1 or a valid index in the linked-list.
 
 
-
 Follow up: Can you solve it using O(1) (i.e. constant) memory?m
 */
 
@@ -46,15 +46,68 @@ Follow up: Can you solve it using O(1) (i.e. constant) memory?m
  *     Next *ListNode
  * }
  */
+
 func hasCycle(head *listutils.ListNode) bool {
-    return true   
+
+	if head == nil {
+
+		return false
+	}
+
+	if head.Next == nil {
+		return false
+	}
+
+	if head.Next != nil {
+
+		if head.Next == head {
+			return true
+		}
+
+		if head.Next.Next == head {
+			return true
+		}
+	}
+
+	if head.Next.Next == nil {
+		return false
+	}
+
+	cabeza, cola := head, head
+
+	for cola != nil && cola.Next != nil {
+
+		cabeza = cabeza.Next
+		cola = cola.Next.Next
+
+		if cabeza == cola {
+			return true
+		}
+
+	}
+
+	return false
 }
 
 func main() {
-    slice  := []int{3,2,0,-4}
 
-    list := listutils.CreateList(slice)
+	slice := []int{-21, 10, 17, 8, 4, 26, 5, 35, 33, -7, -16, 27, -12, 6, 29, -12, 5, 9, 20, 14, 14, 2, 13, -24, 21, 23, -21, 5}
 
-    listutils.PrintList(list)
+	simplelist := listutils.CreateList(slice)
 
+	// head := &listutils.ListNode{Val: 1}
+	// node1 := &listutils.ListNode{Val: 2}
+	// node2 := &listutils.ListNode{Val: 3}
+	// node3 := &listutils.ListNode{Val: 4}
+	// node4 := &listutils.ListNode{Val: 5}
+	// node5 := &listutils.ListNode{Val: 6}
+
+	// head.Next = node1
+	// node1.Next = node2
+	// node2.Next = node3
+	// node3.Next = node4
+	// node4.Next = node5
+	// node5.Next = node2
+
+	fmt.Println(hasCycle(simplelist))
 }
